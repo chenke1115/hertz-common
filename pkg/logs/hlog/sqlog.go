@@ -1,7 +1,7 @@
 /*
  * @Author: changge <changge1519@gmail.com>
  * @Date: 2023-01-03 17:54:27
- * @LastEditTime: 2023-01-04 11:44:53
+ * @LastEditTime: 2023-02-22 11:15:48
  * @Description: Do not edit
  */
 package hlog
@@ -41,7 +41,9 @@ func SqlLog(conf *configs.Options) *lumberjack.Logger {
 		MaxBackups: conf.Log.MaxBackups,
 		MaxAge:     conf.Log.MaxAge,
 		Compress:   conf.Log.Compress,
+		LocalTime:  true,
 	}
+	defer lumberjackLogger.Close()
 
 	return lumberjackLogger
 }
